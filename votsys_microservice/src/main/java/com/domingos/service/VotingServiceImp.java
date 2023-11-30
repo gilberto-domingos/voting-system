@@ -36,18 +36,3 @@ public class VotingServiceImp {
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

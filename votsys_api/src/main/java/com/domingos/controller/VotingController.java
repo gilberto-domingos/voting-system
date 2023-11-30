@@ -22,7 +22,7 @@ public class VotingController {
 	@PostMapping
 	public ResponseEntity<String>vote(@RequestBody Participant participant){
 		this.votingService.addEvent(participant);
-		return ResponseEntity.ok("voto computado");
+		return ResponseEntity.ok("voto computado !");
 	}	
 
 }
