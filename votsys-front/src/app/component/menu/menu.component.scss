@@ -1,0 +1,56 @@
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.primary-color {
+  background-color: var(--primary); 
+  color: #fff;
+} 
+
+#logo {
+  margin-left: auto;
+}
+
+h3 {
+  text-shadow: 1px 1px 1px black;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+}
+
+.title-container h3 {
+  margin-right: 10px;
+}
+
+.style {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px white;
+  font-size: 17px;
+  font-style: italic;
+  text-decoration: underline overline;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  animation: flashing 2s infinite;
+}
+
+@keyframes flashing {
+  0% {
+    color: yellow;
+    text-shadow: 1px 1px 1px rgb(1, 1, 161);
+  }
+
+  50% {
+    text-shadow: 1px 1px 1px rgb(1, 1, 161);
+    color: #fff;
+  }
+  100% {
+    color: yellow;
+    text-shadow: 1px 1px 1px rgb(1, 1, 161);
+  }
+}
