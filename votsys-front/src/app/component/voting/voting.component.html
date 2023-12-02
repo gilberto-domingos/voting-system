@@ -1,1 +1,27 @@
-<p>voting works!</p>
+<form (ngSubmit)="send()">
+    <mat-card>
+      <mat-card-content>
+        <h2 class="example-h2">Escolha o candidato :</h2>  
+        <section class="example-section">        
+          <mat-radio-group [(ngModel)]="valueSelected" name="participant">
+            <mat-radio-button class="example-margin" value="Marcelo">Marcelo</mat-radio-button>
+            <mat-radio-button class="example-margin" value="Andréia">Andréia</mat-radio-button>
+            <mat-radio-button class="example-margin" value="Alexandre">Alexandre</mat-radio-button>
+          </mat-radio-group>   
+          <mat-form-field>
+            <input matInput placeholder="Novo Participante" [(ngModel)]="newCandidate">
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="addCandidate()">Adicionar Participante</button>
+           
+        </section>  
+        <section>
+          <div *ngIf="valueSelected !== ''">
+                Você vai votar em : {{ valueSelected }}
+          </div>               
+        </section>          
+      </mat-card-content>
+    </mat-card>
+    <button mat-raised-button type="submit" color="primary">Votar</button>  
+    <div *ngIf="voted" class="voting">Seu voto foi salvo !</div>        
+  </form>
+  
