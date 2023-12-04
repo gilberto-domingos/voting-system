@@ -6,23 +6,45 @@ import { Component } from '@angular/core';
   styleUrls: ['./voting.component.scss']
 })
 export class VotingComponent {
-
   valueSelected: string = '';
   voted: boolean = false;
   newCandidate: string = '';
+  participants: string[] = ['Marcelo', 'Andréia', 'Alexandre'];
+  title: string = 'Selecione sua escolha :';
+  newTitle: string = '';
 
-  send() {
-    console.log('Voto salvo:', this.valueSelected);
-    this.voted = true; 
+  sendVote() {    
+    this.voted = true;
     setTimeout(() => {
-      this.voted = false; 
+      this.voted = false;
     }, 3000);
   }
 
-
   addCandidate() {
-    if (this.newCandidate.trim() !== '') {      
-      this.newCandidate = ''; 
+    if (this.newCandidate.trim() !== '') {
+      this.participants.push(this.newCandidate);
+      this.newCandidate = '';
+    }
+  }
+
+  selectCandidate(candidate: string) {
+    this.valueSelected = candidate;
+  }
+
+  removeParticipant(candidate: string) {
+    const index = this.participants.indexOf(candidate);
+    if (index !== -1) {
+      this.participants.splice(index, 1);
+      if (this.valueSelected === candidate) {
+        this.valueSelected = '';
+      }
+    }
+  }
+
+  atualizarTitulo() {
+    if (this.newTitle.trim() !== '') {
+      this.title = this.newTitle;
+      this.newTitle = ''; 
     }
   }
 

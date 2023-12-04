@@ -14,8 +14,7 @@
   }
   
   button{
-    background-color: var(--primary);
-    color: yellow;
+    background-color: var(--primary);   
     margin-left: 20px;
     margin-top: 20px;
   }
@@ -24,3 +23,13 @@
     margin-left: 20px;
     margin-top: 20px;
   }
+
+  mat-form-field{
+    width: 100%;
+    height: auto;
+  }
+
+  .white-icon {
+    color: white;
+    background-color: rgba(240, 1, 1, 0.847);
+}
