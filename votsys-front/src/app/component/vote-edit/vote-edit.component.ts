@@ -15,8 +15,8 @@ export class VoteEditComponent implements OnInit{
   newTitle: string = '';
  text: string = '';
  public data: { name: string, age: number, text: string } = { name: "", age: 0, text: "" };
-/////////////////////////////////////////////////////////
-@Input() valor: number = 0;  
+
+  @Input() valor: number = 0;  
 
   @Input() novoValor: number = 0;
 
@@ -26,9 +26,7 @@ export class VoteEditComponent implements OnInit{
 
   @Output() novoValorChange = new EventEmitter<number>();
 
-  @ViewChild('campoInput', { static: true }) campoValorInput!: ElementRef;
-
-  @Output() valorAtualizado = new EventEmitter<number>();  
+  @ViewChild('campoInput', { static: true }) campoValorInput!: ElementRef; 
 
   constructor(private layoutService: LayoutService){}
 
@@ -36,18 +34,14 @@ export class VoteEditComponent implements OnInit{
     this.valorInicial++;
     this.campoValorInput.nativeElement.value = this.valorInicial;
     this.mudouValor.emit({ novoValor: this.valorInicial });
-    this.layoutService.setNovoValor(this.valorInicial);
-    this.valorAtualizado.emit(this.valorInicial);
-     console.log("Valor alterado - Novo valor emitido:", this.valorInicial);
+    this.layoutService.setNovoValor(this.valorInicial);   
   }
 
   decrementa(): void {
     this.valorInicial--;
     this.campoValorInput.nativeElement.value = this.valorInicial;
     this.mudouValor.emit({ novoValor: this.valorInicial });
-    this.layoutService.setNovoValor(this.valorInicial);
-    this.valorAtualizado.emit(this.valorInicial);
-    console.log("Valor alterado - Novo valor emitido:", this.valorInicial);
+    this.layoutService.setNovoValor(this.valorInicial);      
   }
 
   

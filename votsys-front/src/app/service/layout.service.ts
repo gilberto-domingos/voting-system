@@ -9,15 +9,12 @@ export class LayoutService {
   private dataSubject: ReplaySubject<string> = new ReplaySubject<string>(1);
 
   setData(data: string): void {
-    this.dataSubject.next(data);
-  console.log("Service DADOSAA :", data)
+    this.dataSubject.next(data);  
   }
 
   getData$(): Observable<string> {
     return this.dataSubject.asObservable();
-  }
-
-  ///////////////////////////////////////////
+  }  
 
   private novoValorSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   novoValor$ = this.novoValorSubject.asObservable();

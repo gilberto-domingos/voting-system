@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { LayoutService } from 'src/app/service/layout.service';
 import { Observable, Subject, Subscription, startWith, takeUntil } from 'rxjs';
 import { VoteEditComponent } from '../vote-edit/vote-edit.component';
-import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-voting',
@@ -22,15 +21,14 @@ export class VotingComponent implements OnInit , OnDestroy{
   newTitle: string = '';
   titleSearch: string = '';
   receivedData: string = '';
-  private unsubscribe = new Subject<void>();
-  
+  private unsubscribe = new Subject<void>();  
   @ViewChild(VoteEditComponent, { static: false }) voteEditComponent!: VoteEditComponent;  
   
   valorInicial: number = 0; 
   valorAtual: string = '';
   novoValor: number = 0;
 
-  constructor(private layoutService: LayoutService,private cdr: ChangeDetectorRef) {
+  constructor(private layoutService: LayoutService) {
     this.valorInicial = this.layoutService.getNovoValor();
   }
 
@@ -42,33 +40,33 @@ export class VotingComponent implements OnInit , OnDestroy{
     this.valorInicial = evento.novoValor;
     this.layoutService.setNovoValor(this.valorInicial);
     console.log(evento.novoValor);
-  } 
-  
+  }    
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      if (this.voteEditComponent) {
+        this.valorInicial = this.voteEditComponent.valor;        
+      } 
+    });
+  }
 
   ngOnInit(): void {
     this.layoutService.getData$().pipe(takeUntil(this.unsubscribe)).subscribe(data => {
-      this.receivedData = data;      
+      this.receivedData = data;
+      if (this.voteEditComponent) {
+        this.valorInicial = this.voteEditComponent.valor;        
+      }
     });
 
     this.layoutService.getData$().pipe(takeUntil(this.unsubscribe)).subscribe(data => {
       this.receivedData = data;      
     });    
-  }
-  
-  ngAfterViewInit(): void {
-    this.voteEditComponent.valorAtualizado.subscribe((novoValor: number) => {
-      this.valorInicial = novoValor;      
-    });   
-  }
+  } 
 
   ngOnDestroy() {
       this.unsubscribe.next();
       this.unsubscribe.complete();
   }
-
-
-
-  ///////////////////////////////////////
 
   sendVote() {
     this.voted = true;
