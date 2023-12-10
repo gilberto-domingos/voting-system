@@ -1,0 +1,51 @@
+<div>
+  <button class="btn btn-primary" (click)="decrementa()">-</button>
+  <input type="text" [value]="valorInicial" readonly #campoInput>
+  <button class="btn btn-primary" (click)="incrementa()">+</button>
+</div>
+
+<h1>Valor no OutputPropertyComponent: {{ valorInicial }}</h1>
+
+<!---->
+<mat-card-title><h2 class="example-h2">Editar a pesquisar :</h2></mat-card-title>
+<mat-card-title><h3 class="example-h2">Deletar opções da pesquisa</h3></mat-card-title>
+<mat-card *ngFor="let participant of participants">  
+  <mat-card-content>
+    <mat-radio-button class="example-margin" [value]="participant" (click)="selectCandidate(participant)">
+      {{ participant }}
+    </mat-radio-button>
+    <button mat-icon-button class="white-icon" (click)="removeParticipant(participant)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-content>
+    <h3 class="example-h2">Adicionar novo candidato ou pergunta :</h3>
+
+    <mat-form-field>
+      <input matInput placeholder="digite novo participante ou pergunta" [(ngModel)]="newCandidate">
+    </mat-form-field><br>
+    <button mat-raised-button color="primary" (click)="addCandidate()">Adicionar Participante</button>
+  </mat-card-content><br>
+</mat-card>
+
+<mat-card>
+  <mat-card-content>
+    <h3 class="example-h2">Opções de título da Pesquisa :</h3>
+    <h1 class="example-h2">novo título : {{ title }}</h1>
+    <mat-form-field>
+      <input matInput placeholder="digite novo titulo" [(ngModel)]="newTitle">
+    </mat-form-field><br>
+    <h2>Editar votação</h2>
+    <button (click)="sendData()">Send Data</button>
+<!--
+<input type="text" [(ngModel)]="data.name" placeholder="Digite o nome">
+<input type="number" [(ngModel)]="data.age" placeholder="Digite a idade">
+
+<button (click)="onSubmit()">Enviar</button> -->
+
+  </mat-card-content><br><br><br><br>
+</mat-card>
+

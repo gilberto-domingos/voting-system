@@ -1,3 +1,11 @@
+<!-- precisamos atualizar o novo valor incrementado no vote-edit component aqui nessa tag a seguir --> 
+
+  <h1 >Valor no vote-edit Component: {{valorInicial }}</h1>
+
+
+
+
+<br><br><br><br><br>
 <form (ngSubmit)="sendVote()">
 <mat-card>
   <mat-card-content>
@@ -19,38 +27,14 @@
     <div *ngIf="voted" class="voting">Seu voto foi salvo!</div>
   </mat-card-content>
 </mat-card>
-</form><br><br><br>
-<mat-card-title><h2 class="example-h2">Editar a pesquisar :</h2></mat-card-title>
-<mat-card-title><h3 class="example-h2">Deletar opções da pesquisa</h3></mat-card-title>
-<mat-card *ngFor="let participant of participants">  
-  <mat-card-content>
-    <mat-radio-button class="example-margin" [value]="participant" (click)="selectCandidate(participant)">
-      {{ participant }}
-    </mat-radio-button>
-    <button mat-icon-button class="white-icon" (click)="removeParticipant(participant)">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </mat-card-content>
-</mat-card>
-
+</form>
 <mat-card>
-  <mat-card-content>
-    <h3 class="example-h2">Adicionar novo candidato ou pergunta :</h3>
+  <h2>Votação</h2>
+  <div><h2>informação : </h2>{{ receivedData }}</div>
+<!--
+  <p>Nome: {{ nome }}</p>
+    <p>Idade: {{ idade }}</p> -->
 
-    <mat-form-field>
-      <input matInput placeholder="digite novo participante ou pergunta" [(ngModel)]="newCandidate">
-    </mat-form-field><br>
-    <button mat-raised-button color="primary" (click)="addCandidate()">Adicionar Participante</button>
-  </mat-card-content><br>
-</mat-card>
-
-<mat-card>
-  <mat-card-content>
-    <h3 class="example-h2">Opções de título da Pesquisa :</h3>
-
-    <mat-form-field>
-      <input matInput placeholder="digite novo titulo" [(ngModel)]="newTitle">
-    </mat-form-field><br>
-    <button mat-raised-button color="primary" (click)="atualizarTitulo()">Atualizar Título</button>
-  </mat-card-content><br><br><br><br>
+<!--<button (click)="updateTitle()">Atualizar Título</button>-->
+<br><br><br><br><br><br>
 </mat-card>

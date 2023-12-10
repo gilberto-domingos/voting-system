@@ -1,18 +1,49 @@
+<mat-toolbar class="primary-color">
+  <span class="title-container">
+<button mat-icon-button [matMenuTriggerFor]="menu"> 
+  <mat-icon>more_vert</mat-icon>
+</button>
+    <h3>Votação onLine :</h3>
+    <h3 class="style">Real Time</h3>
+    <span class="example-spacer">
+    <button mat-icon-button class="example-icon"  aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </span>
+</span>
+  <span>
+    <img id="logo" src="assets/logo.svg" width="200px" height="alt" />
+  </span>
+<mat-menu #menu="matMenu"> 
+  <button (click)="voteedit()" mat-menu-item>
+    <mat-icon>dialpad</mat-icon>
+    <span>Editar Layout</span>
+  </button>
+  <button (click)="voting()" mat-menu-item>
+    <mat-icon>dialpad</mat-icon>
+    <span>Votação</span>
+  </button>          
+</mat-menu>
+</mat-toolbar>
+
+<!--
 <p>
   <mat-toolbar class="primary-color">
     <span class="title-container">
-    <button  mat-icon-button class="example-icon" >
-      <mat-icon>menu</mat-icon>
-    </button>
-   
+      <button mat-icon-button class="example-icon">
+        <mat-icon>menu</mat-icon>
+      </button>      
       <h3>Votação onLine :</h3>
       <h3 class="style">Real Time</h3>
-    
-    <span class="example-spacer"></span>
-    <button  mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
-</span>
-    <span><img id="logo" src="assets/logo.svg" width="200px" height="alt"/></span>
+
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon"  aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button>
+    </span>
+    <span>
+      <img id="logo" src="assets/logo.svg" width="200px" height="alt" />
+    </span>
   </mat-toolbar>
 </p>
+-->

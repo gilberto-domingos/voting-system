@@ -9,13 +9,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './component/menu/menu.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import { VoteEditComponent } from './component/vote-edit/vote-edit.component';
+import { LayoutService } from './service/layout.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     VotingComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    VoteEditComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     FormsModule
   ],
-  providers: [],
+  providers: [LayoutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
