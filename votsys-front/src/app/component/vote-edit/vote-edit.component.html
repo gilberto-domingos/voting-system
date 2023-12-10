@@ -7,7 +7,7 @@
 <h1>Valor no OutputPropertyComponent: {{ valorInicial }}</h1>
 
 <!---->
-<mat-card-title><h2 class="example-h2">Editar a pesquisar :</h2></mat-card-title>
+<mat-card-title><h2 class="example-h2">Editar a pesquisa/votação :</h2></mat-card-title>
 <mat-card-title><h3 class="example-h2">Deletar opções da pesquisa</h3></mat-card-title>
 <mat-card *ngFor="let participant of participants">  
   <mat-card-content>
@@ -37,14 +37,7 @@
     <h1 class="example-h2">novo título : {{ title }}</h1>
     <mat-form-field>
       <input matInput placeholder="digite novo titulo" [(ngModel)]="newTitle">
-    </mat-form-field><br>
-    <h2>Editar votação</h2>
-    <button (click)="sendData()">Send Data</button>
-<!--
-<input type="text" [(ngModel)]="data.name" placeholder="Digite o nome">
-<input type="number" [(ngModel)]="data.age" placeholder="Digite a idade">
-
-<button (click)="onSubmit()">Enviar</button> -->
+    </mat-form-field><br> 
 
   </mat-card-content><br><br><br><br>
 </mat-card>

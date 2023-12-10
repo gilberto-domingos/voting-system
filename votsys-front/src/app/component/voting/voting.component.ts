@@ -12,7 +12,7 @@ import { VoteEditComponent } from '../vote-edit/vote-edit.component';
   templateUrl: './voting.component.html',
   styleUrls: ['./voting.component.scss']
 })
-export class VotingComponent implements OnInit , OnDestroy{
+export class VotingComponent implements OnInit {
   valueSelected: string = '';
   voted: boolean = false;
   newCandidate: string = '';
@@ -40,17 +40,17 @@ export class VotingComponent implements OnInit , OnDestroy{
     this.valorInicial = evento.novoValor;
     this.layoutService.setNovoValor(this.valorInicial);
     console.log(evento.novoValor);
-  }    
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      if (this.voteEditComponent) {
-        this.valorInicial = this.voteEditComponent.valor;        
-      } 
-    });
-  }
+  }  
 
   ngOnInit(): void {
+
+    this.layoutService.participantRemoved$.pipe(
+      takeUntil(this.unsubscribe)
+    ).subscribe(candidate => {
+      console.log('Participante removido:', candidate);
+    });
+
+
     this.layoutService.getData$().pipe(takeUntil(this.unsubscribe)).subscribe(data => {
       this.receivedData = data;
       if (this.voteEditComponent) {
@@ -61,12 +61,16 @@ export class VotingComponent implements OnInit , OnDestroy{
     this.layoutService.getData$().pipe(takeUntil(this.unsubscribe)).subscribe(data => {
       this.receivedData = data;      
     });    
-  } 
-
-  ngOnDestroy() {
-      this.unsubscribe.next();
-      this.unsubscribe.complete();
   }
+  
+  ngAfterViewInit() {
+    setTimeout(() => {
+      if (this.voteEditComponent) {
+        this.valorInicial = this.voteEditComponent.valor;        
+      } 
+    });
+  }
+  
 
   sendVote() {
     this.voted = true;

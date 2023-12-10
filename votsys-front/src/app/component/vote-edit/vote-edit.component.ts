@@ -1,5 +1,4 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Subject } from 'rxjs';
 import { LayoutService } from 'src/app/service/layout.service';
 
 @Component({
@@ -28,6 +27,8 @@ export class VoteEditComponent implements OnInit{
 
   @ViewChild('campoInput', { static: true }) campoValorInput!: ElementRef; 
 
+  @Output() participantRemoved = new EventEmitter<string>();
+
   constructor(private layoutService: LayoutService){}
 
   incrementa(): void {
@@ -45,18 +46,9 @@ export class VoteEditComponent implements OnInit{
   }
 
   
-  ngOnInit(): void {
-    this.sendData();
+  ngOnInit(): void {    
     this.valorInicial = this.layoutService.getNovoValor();
-  }
-
-  sendData(): void {
-   const data = 'Hello, Component B!';
-    this.layoutService.setData(data);
-   // console.log("ENVIANDO DADOS : ", data)
-  }
-
-  ///////////////////////////////////
+  }   
 
   addCandidate() {
     if (this.newCandidate.trim() !== '') {
@@ -75,7 +67,9 @@ export class VoteEditComponent implements OnInit{
       this.participants.splice(index, 1);
       if (this.valueSelected === candidate) {
         this.valueSelected = '';
-      }
+      }  
+      console.log("PARTICIPANTE REMOVIDO :" , candidate); 
+      this.participantRemoved.emit(candidate);   
     }
   }
 

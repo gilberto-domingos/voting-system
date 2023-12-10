@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,15 @@ import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 export class LayoutService {
   
   private dataSubject: ReplaySubject<string> = new ReplaySubject<string>(1);
+
+  private removedParticipantSubject: Subject<string> = new Subject<string>();
+
+  participantRemoved$: Observable<string> = this.removedParticipantSubject.asObservable();
+
+  updateRemovedParticipant(candidate: string): void {
+    this.removedParticipantSubject.next(candidate);
+    console.log("SERVICE PARTICIPANTE REMOVIDO :", candidate)
+  }
 
   setData(data: string): void {
     this.dataSubject.next(data);  
