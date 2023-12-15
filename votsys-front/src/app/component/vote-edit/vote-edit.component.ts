@@ -1,5 +1,6 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { LayoutService } from 'src/app/service/layout.service';
+import { LayoutCandidateService } from 'src/app/service/layout-candidate.service';
 
 @Component({
   selector: 'app-vote-edit',
@@ -12,8 +13,7 @@ export class VoteEditComponent implements OnInit{
   participants: string[] = ['Marcelo', 'Andréia', 'Alexandre'];
   title: string = 'Selecione sua escolha :';
   newTitle: string = '';
- text: string = '';
- public data: { name: string, age: number, text: string } = { name: "", age: 0, text: "" };
+  text: string = '';
 
   @Input() valor: number = 0;  
 
@@ -29,13 +29,16 @@ export class VoteEditComponent implements OnInit{
 
   @Output() participantRemoved = new EventEmitter<string>();
 
-  constructor(private layoutService: LayoutService){}
+  @Output() testEdit: string = "TESTANDO VARIAVEL testEdit";
+
+  constructor(private layoutService: LayoutService, private layoutCandidate: LayoutCandidateService){}
+
 
   incrementa(): void {
     this.valorInicial++;
     this.campoValorInput.nativeElement.value = this.valorInicial;
     this.mudouValor.emit({ novoValor: this.valorInicial });
-    this.layoutService.setNovoValor(this.valorInicial);   
+    this.layoutService.setNovoValor(this.valorInicial); 
   }
 
   decrementa(): void {
@@ -47,7 +50,7 @@ export class VoteEditComponent implements OnInit{
 
   
   ngOnInit(): void {    
-    this.valorInicial = this.layoutService.getNovoValor();
+    this.valorInicial = this.layoutService.getNovoValor();   
   }   
 
   addCandidate() {
@@ -68,9 +71,14 @@ export class VoteEditComponent implements OnInit{
       if (this.valueSelected === candidate) {
         this.valueSelected = '';
       }  
-      console.log("PARTICIPANTE REMOVIDO :" , candidate); 
-      this.participantRemoved.emit(candidate);   
+      this.participantRemoved.emit(candidate);
     }
+  }
+
+  updateTestEditValue(newValue: string) {
+    this.testEdit = newValue;
+    this.layoutCandidate.setTestValue(this.testEdit);
+    console.log("vote-edit COMPONENT", this.testEdit)
   }
 
 }  

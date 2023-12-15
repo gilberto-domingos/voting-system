@@ -1,8 +1,9 @@
-<!-- precisamos atualizar o novo valor incrementado no vote-edit component aqui nessa tag a seguir --> 
 
+
+<h1>VARIAVEL NOVA : {{ teste2 }}</h1>
+
+<br><br><br><br><br>
   <h1 >Valor no vote-edit Component: {{valorInicial }}</h1>
-
-
 
 
 <br><br><br><br><br>
@@ -13,7 +14,7 @@
     <section class="example-section">
       <mat-radio-group [(ngModel)]="valueSelected" name="participant">
         <mat-radio-button class="example-margin" *ngFor="let participant of participants" [value]="participant" (click)="selectCandidate(participant)">
-          {{ participant }}
+          {{ participant }} <!-- precisa atualizar essa variavel "participant"-->
         </mat-radio-button>
       </mat-radio-group>  
     </section>

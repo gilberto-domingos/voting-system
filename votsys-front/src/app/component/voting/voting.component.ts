@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { LayoutService } from 'src/app/service/layout.service';
+import { LayoutCandidateService } from 'src/app/service/layout-candidate.service';
 import { Observable, Subject, Subscription, startWith, takeUntil } from 'rxjs';
 import { VoteEditComponent } from '../vote-edit/vote-edit.component';
 
@@ -28,8 +29,12 @@ export class VotingComponent implements OnInit {
   valorAtual: string = '';
   novoValor: number = 0;
 
-  constructor(private layoutService: LayoutService) {
+  teste2: string = '';
+
+  constructor(private layoutService: LayoutService, private layoutCandidate: LayoutCandidateService) {
     this.valorInicial = this.layoutService.getNovoValor();
+    this.teste2 = this.layoutCandidate.getTestValue();
+
   }
 
   onKeyUp(evento: KeyboardEvent){
@@ -42,25 +47,20 @@ export class VotingComponent implements OnInit {
     console.log(evento.novoValor);
   }  
 
-  ngOnInit(): void {
+  updateParticipants(candidate: string) {
+    console.log('Participante removido:', candidate);
+    this.participants = this.participants.filter(participant => participant !== candidate);
+    console.log('Lista de participantes atualizada:', this.participants);
+  }
 
-    this.layoutService.participantRemoved$.pipe(
+  ngOnInit(): void {    
+   /* this.layoutCandidate.participantRemoved$.pipe(
       takeUntil(this.unsubscribe)
     ).subscribe(candidate => {
-      console.log('Participante removido:', candidate);
-    });
-
-
-    this.layoutService.getData$().pipe(takeUntil(this.unsubscribe)).subscribe(data => {
-      this.receivedData = data;
-      if (this.voteEditComponent) {
-        this.valorInicial = this.voteEditComponent.valor;        
-      }
-    });
-
-    this.layoutService.getData$().pipe(takeUntil(this.unsubscribe)).subscribe(data => {
-      this.receivedData = data;      
-    });    
+      console.log('VOTING Participante removido:', candidate);
+      this.participants = this.participants.filter(participant => participant !== candidate);
+      console.log('Lista de participantes atualizada:', this.participants); 
+    }); */
   }
   
   ngAfterViewInit() {
@@ -68,6 +68,10 @@ export class VotingComponent implements OnInit {
       if (this.voteEditComponent) {
         this.valorInicial = this.voteEditComponent.valor;        
       } 
+
+      if(this.voteEditComponent){
+        this.teste2 = this.voteEditComponent.testEdit;
+      }
     });
   }
   

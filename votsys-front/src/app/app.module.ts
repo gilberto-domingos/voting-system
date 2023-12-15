@@ -11,6 +11,7 @@ import { FooterComponent } from './component/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { VoteEditComponent } from './component/vote-edit/vote-edit.component';
 import { LayoutService } from './service/layout.service';
+import { LayoutCandidateService } from './service/layout-candidate.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { LayoutService } from './service/layout.service';
     MaterialModule,
     FormsModule
   ],
-  providers: [LayoutService],
+  providers: [LayoutService, LayoutCandidateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
