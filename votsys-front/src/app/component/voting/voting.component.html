@@ -1,9 +1,13 @@
 
 
-<h1>VARIAVEL NOVA : {{ teste2 }}</h1>
+
+<h1>VARIAVEL testEdit : {{ testEdit }}</h1>
+
+
+
 
 <br><br><br><br><br>
-  <h1 >Valor no vote-edit Component: {{valorInicial }}</h1>
+  <h1 >Valor no vote-edit Component: {{ valorInicial }}</h1>
 
 
 <br><br><br><br><br>
@@ -14,7 +18,7 @@
     <section class="example-section">
       <mat-radio-group [(ngModel)]="valueSelected" name="participant">
         <mat-radio-button class="example-margin" *ngFor="let participant of participants" [value]="participant" (click)="selectCandidate(participant)">
-          {{ participant }} <!-- precisa atualizar essa variavel "participant"-->
+          {{ participant }} 
         </mat-radio-button>
       </mat-radio-group>  
     </section>
@@ -31,11 +35,7 @@
 </form>
 <mat-card>
   <h2>Votação</h2>
-  <div><h2>informação : </h2>{{ receivedData }}</div>
-<!--
-  <p>Nome: {{ nome }}</p>
-    <p>Idade: {{ idade }}</p> -->
+  
 
-<!--<button (click)="updateTitle()">Atualizar Título</button>-->
 <br><br><br><br><br><br>
 </mat-card>

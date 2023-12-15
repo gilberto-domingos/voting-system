@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { LayoutService } from 'src/app/service/layout.service';
 import { LayoutCandidateService } from 'src/app/service/layout-candidate.service';
+import { TestService } from 'src/app/service/test.service';
 
 @Component({
   selector: 'app-vote-edit',
@@ -31,7 +32,12 @@ export class VoteEditComponent implements OnInit{
 
   @Output() testEdit: string = "TESTANDO VARIAVEL testEdit";
 
-  constructor(private layoutService: LayoutService, private layoutCandidate: LayoutCandidateService){}
+  
+
+  constructor(private layoutService: LayoutService,
+              private layoutCandidate: LayoutCandidateService,
+              private testService: TestService
+    ){}
 
 
   incrementa(): void {
@@ -77,7 +83,7 @@ export class VoteEditComponent implements OnInit{
 
   updateTestEditValue(newValue: string) {
     this.testEdit = newValue;
-    this.layoutCandidate.setTestValue(this.testEdit);
+    this.testService.setTestValue(this.testEdit);
     console.log("vote-edit COMPONENT", this.testEdit)
   }
 
