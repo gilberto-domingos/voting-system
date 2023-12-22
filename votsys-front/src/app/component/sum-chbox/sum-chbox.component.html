@@ -1,0 +1,9 @@
+<div *ngFor="let product of products">
+    <label>
+      <input type="checkbox" [value]="product.price" (change)="updateTotal($event, product.price)">
+      {{ product.name }} - R${{ product.price }}
+    </label>
+  </div>
+  
+  <p>Total: ${{ total }}</p>
+  

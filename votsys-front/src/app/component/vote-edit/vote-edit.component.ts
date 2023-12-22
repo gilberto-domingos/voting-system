@@ -3,6 +3,7 @@ import { LayoutService } from 'src/app/service/layout.service';
 import { LayoutCandidateService } from 'src/app/service/layout-candidate.service';
 import { TestService } from 'src/app/service/test.service';
 
+
 @Component({
   selector: 'app-vote-edit',
   templateUrl: './vote-edit.component.html',
@@ -20,6 +21,8 @@ export class VoteEditComponent implements OnInit{
 
   @Input() novoValor: number = 0;
 
+  @Input() testEdit: string = "TESTANDO VARIAVEL testEdit";
+
   valorInicial: number = 0;
 
   @Output() mudouValor = new EventEmitter<{ novoValor: number }>();  
@@ -30,14 +33,16 @@ export class VoteEditComponent implements OnInit{
 
   @Output() participantRemoved = new EventEmitter<string>();
 
-  @Output() testEdit: string = "TESTANDO VARIAVEL testEdit";
+  
+
+ // @Output() testEdit: string = "TESTANDO VARIAVEL testEdit";
 
   
 
   constructor(private layoutService: LayoutService,
               private layoutCandidate: LayoutCandidateService,
               private testService: TestService
-    ){}
+    ){  this.testService.setTestValue(this.testEdit); }
 
 
   incrementa(): void {
@@ -56,7 +61,8 @@ export class VoteEditComponent implements OnInit{
 
   
   ngOnInit(): void {    
-    this.valorInicial = this.layoutService.getNovoValor();   
+    this.valorInicial = this.layoutService.getNovoValor(); 
+    this.testEdit = this.testService.getTestValue();   
   }   
 
   addCandidate() {
@@ -82,8 +88,9 @@ export class VoteEditComponent implements OnInit{
   }
 
   updateTestEditValue(newValue: string) {
-    this.testEdit = newValue;
+    this.testEdit = newValue;    
     this.testService.setTestValue(this.testEdit);
+    this.testService.setTestValue(newValue);    
     console.log("vote-edit COMPONENT", this.testEdit)
   }
 

@@ -22,11 +22,12 @@ export class VotingComponent implements  AfterViewInit{
   private unsubscribe = new Subject<void>();  
   @ViewChild(VoteEditComponent, { static: false }) voteEditComponent!: VoteEditComponent;  
   
-  valorInicial: number = 0; 
+  
   valorAtual: string = '';
   novoValor: number = 0;
 
-  testEdit:string = "VOTING - testEdit";
+  valorInicial: number = 0; 
+  testEdit:string = '';
 
   
 
@@ -36,11 +37,7 @@ export class VotingComponent implements  AfterViewInit{
     this.valorInicial = this.layoutService.getNovoValor();
     this.testEdit = this.testService.getTestValue();  
 
-  }
-
-  onKeyUp(evento: KeyboardEvent){
-    this.valorAtual = (<HTMLInputElement>evento.target).value;
-  }
+  }  
 
   onMudouValor(evento: { novoValor: number; }){
     this.valorInicial = evento.novoValor;
@@ -52,20 +49,25 @@ export class VotingComponent implements  AfterViewInit{
     console.log('Participante removido:', candidate);
     this.participants = this.participants.filter(participant => participant !== candidate);
     console.log('Lista de participantes atualizada:', this.participants);
-  }  
+  } 
+  
+  ngOnInit() {
+    this.testService.test$.subscribe(testEdit => {
+      this.testEdit = testEdit;
+    });
+  }
 
   
   ngAfterViewInit() {
     setTimeout(() => {  
 
       if(this.voteEditComponent){
-        this.testEdit = this.voteEditComponent.testEdit;
+        this.testEdit = this.voteEditComponent.testEdit;        
       }
 
       if (this.voteEditComponent) {
         this.valorInicial = this.voteEditComponent.valor;        
-      } 
-
+      }
       
     });
   }
@@ -81,9 +83,6 @@ export class VotingComponent implements  AfterViewInit{
   selectCandidate(candidate: string) {
     this.valueSelected = candidate;
   }
-
-
-
 
 }
 

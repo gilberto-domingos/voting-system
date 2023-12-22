@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { VoteEditComponent } from './component/vote-edit/vote-edit.component';
 import { LayoutService } from './service/layout.service';
 import { LayoutCandidateService } from './service/layout-candidate.service';
+import { SumChboxComponent } from './component/sum-chbox/sum-chbox.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LayoutCandidateService } from './service/layout-candidate.service';
     VotingComponent,
     MenuComponent,
     FooterComponent,
-    VoteEditComponent
+    VoteEditComponent,
+    SumChboxComponent
   ],
   imports: [
     BrowserModule,
